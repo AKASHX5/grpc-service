@@ -1,0 +1,15 @@
+syntax = "proto3";
+package data;
+
+message MeterData {
+  string date = 1;
+  float meterusage = 2;
+}
+
+message CreateDataRequest {
+  string date = 1;
+}
+
+message GetDataResult{
+   MeterData meterdata = 1;
+}

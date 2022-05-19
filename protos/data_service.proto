@@ -1,0 +1,10 @@
+syntax="proto3";
+
+import "meter_data.proto";
+
+service Data {
+  rpc CreateData (data.CreateDataRequest) returns (data.GetDataResult);
+}
+
+
+
