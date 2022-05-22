@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10meter_data.proto\x12\x04\x64\x61ta\"-\n\tMeterData\x12\x0c\n\x04\x64\x61te\x18\x01 \x01(\t\x12\x12\n\nmeterusage\x18\x02 \x01(\x02\"!\n\x11\x43reateDataRequest\x12\x0c\n\x04\x64\x61te\x18\x01 \x01(\t\"3\n\rGetDataResult\x12\"\n\tmeterdata\x18\x01 \x01(\x0b\x32\x0f.data.MeterDatab\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10meter_data.proto\x12\x04\x64\x61ta\"-\n\tMeterData\x12\x0c\n\x04\x64\x61te\x18\x01 \x01(\t\x12\x12\n\nmeterusage\x18\x02 \x01(\t\"!\n\x11\x43reateDataRequest\x12\x0c\n\x04\x64\x61te\x18\x01 \x01(\t\"3\n\rGetDataResult\x12\"\n\tmeterdata\x18\x01 \x01(\x0b\x32\x0f.data.MeterDatab\x06proto3')
 
 
 

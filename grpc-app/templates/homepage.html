@@ -1,21 +1,15 @@
-<!--&lt;!&ndash; homepage.html &ndash;&gt;-->
-<!--<!doctype html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <title>Online Books For You</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>Meter Data</h1>-->
-<!--    <ul>-->
-<!--        <li>{{ data.date }}</li>-->
-<!--        <li>{{ data.meterusage }}</li>-->
-
-<!--    </ul>-->
-<!--</body>-->
 
 <!DOCTYPE html>
 <html>
+  <style>
+ h1 {
+  text-align: center;
+  color: black;
+}
+</style>
   <head>
+    <h1>Meter Data Reading</h1>
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
     <title>House</title>
@@ -29,11 +23,47 @@
   </head>
   <body>
     <div class="container"></div>
+
+
+    <table class ="table table-striped">
+      <tr class="bg-info">
+        <th>Date</th>
+        <th>MeterUsage</th>
+      </tr>
+      <tbody id='myTable'>
+      </tbody>
+
+    </table>
+
+
     <script>
       var obj = JSON.parse({{data | tojson | safe}});
-      console.log(obj);
-      console.log(obj.meterdata)
-      document.querySelector(".container").innerHTML = JSON.stringify(obj, null, 2);
+      x = obj.meterdata.meterusage
+      y = JSON.parse(x)
+
+      console.log(y.meterusage)
+      console.log(typeof(y))
+      data = obj.meterdata.meterusage
+<!--      console.log(obj.meterdata.meterusage)-->
+      console.log(typeof(data))
+      console.log(typeof(JSON.stringify(data)))
+<!--      document.querySelector(".container").innerHTML = (obj.meterdata.meterusage, null, 2);-->
+
+      buildTable(y.meterusage)
+
+      function buildTable(data){
+        var table = document.getElementById('myTable')
+
+        for (var i=0; i<1000; i++)
+        {
+          var row = `<tr>
+                      <td>${data[i].time}</td>
+                      <td>${data[i].meterusage}</td>
+                    </tr>`
+            table.innerHTML +=row
+            }
+            }
+
 
     </script>
   </body>

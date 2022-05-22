@@ -3,7 +3,7 @@ package data;
 
 message MeterData {
   string date = 1;
-  float meterusage = 2;
+  string meterusage = 2;
 
 }
 

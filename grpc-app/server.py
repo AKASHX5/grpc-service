@@ -2,27 +2,48 @@ from concurrent import futures
 import random
 import time
 import grpc
+import json
+import csv
 
-import data_service_pb2 as datamessage
+import logging
 import data_service_pb2_grpc as dataservice
 import meter_data_pb2 as meterdata
-import meter_data_pb2_grpc as meterservice
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 
+_LOGGER = logging.getLogger(__name__)
 
+
+csvfilepath = "/Users/akash/PycharmProjects/MicroService/grpc-service/meterusage.csv"
+jsonfilepath = "/Users/akash/PycharmProjects/MicroService/grpc-service/meterusage.json"
+
+with open(csvfilepath, 'r') as csvf:
+    csvReader = csv.reader(csvf)
+    next(csvReader)
+    data = {"meterusage": []}
+    for rows in csvReader:
+        data["meterusage"].append({"time": rows[0], 'meterusage': rows[1]})
+
+with open(jsonfilepath, 'w') as f:
+    json.dump(data, f, indent=4)
+
+with open(jsonfilepath, 'rb') as readfile:
+    data = json.load(readfile)
+response = json.dumps(data, indent=4)
 
 
 
 class MeterService(dataservice.DataServicer):
+
+
     def CreateData(self, request, context):
         metadata = dict(context.invocation_metadata())
         print(metadata)
-        print("got request: " + str(request))
-
-        print(request.date)
-        data = meterdata.MeterData(date=request.date, meterusage=12.2)
-        print(data)
+        try:
+            data = meterdata.MeterData(date=request.date, meterusage=response)
+            _LOGGER.info(data)
+        except Exception as e:
+            _LOGGER.info("No data due to exception", str(e))
         return meterdata.GetDataResult(meterdata=data)
 
 
