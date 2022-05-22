@@ -25,27 +25,20 @@ def render_homepage():
         date=str(datetime.datetime.now())
     )
     print(data_request)
+
+    # try:
     data_response = meter_client.CreateData(
         data_request
     )
-
     print(MessageToJson(data_response))
+    # except Exception as e:
+    #     print("failed due to " +str(e))
+
     data_json = (MessageToJson(data_response))
 
-    # return render_template(
-    #     "homepage.html",
-    #     # date=data_response.date,
-    #     # usage = data_response.meterusage
-    #     data=data_response.meterdata
-    # )
-
-
     return render_template(
-        "homepage.html",
-        # date=data_response.date,
-        # usage = data_response.meterusage
-        data=data_json
-    )
+        "homepage.html", data=data_json
+    ),201
 
 
 if __name__ == '__main__':

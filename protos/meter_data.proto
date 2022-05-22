@@ -4,6 +4,7 @@ package data;
 message MeterData {
   string date = 1;
   float meterusage = 2;
+
 }
 
 message CreateDataRequest {
@@ -12,4 +13,5 @@ message CreateDataRequest {
 
 message GetDataResult{
    MeterData meterdata = 1;
+
 }

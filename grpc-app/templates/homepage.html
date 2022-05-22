@@ -13,42 +13,28 @@
 <!--    </ul>-->
 <!--</body>-->
 
-<html lang="en">
-<head>
-  <title>Datatables Example</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css"/>
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-</head>
-<body>
-<h1>Meter Usage by date</h1>
-<table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Meter Usage</th>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>House</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+      crossorigin="anonymous"
+    />
 
-            </tr>
-        </thead>
-    </table>
-<script>
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "ajax": {
-            // "url": "static/objects2.txt", // This works for the static file
-            "url": "/data", // This doesn't work
-            "dataType": "json",
-            "dataSrc": "data",
-            "contentType":"application/json"
-        },
-        "columns": [
-            { "data": "date" },
-            { "data": "meterusage" },
+  </head>
+  <body>
+    <div class="container"></div>
+    <script>
+      var obj = JSON.parse({{data | tojson | safe}});
+      console.log(obj);
+      console.log(obj.meterdata)
+      document.querySelector(".container").innerHTML = JSON.stringify(obj, null, 2);
 
-        ]
-    } );
-} );
-</script>
-</body>
+    </script>
+  </body>
 </html>
