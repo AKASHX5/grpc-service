@@ -8,6 +8,7 @@ from google.protobuf.json_format import MessageToJson
 
 import data_service_pb2_grpc, data_service_pb2, meter_data_pb2_grpc, meter_data_pb2
 
+
 app = Flask(__name__)
 
 meter_host = os.getenv("METER_HOST", "localhost")
@@ -30,9 +31,6 @@ def home():
     return render_template(
         "home.html"
     )
-
-
-
 
 
 @app.route("/data")
